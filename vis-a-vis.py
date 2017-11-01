@@ -6,6 +6,8 @@ this is better for me than the ADS tool because it only checks a specific list o
 
 it returns info if new citation found, and updated h-index
 
+it requires wget. I had to install it using homebrew for my Mac.
+
 you could script it with cron, if you want
 '''
 
@@ -49,17 +51,17 @@ h0 = h_indx(num)
 
 for i in range(0,len(url)):
     # run wget on each URL
-    os.system('wget '+url[i]+' -O test'+str(i)+'.html -q')
+    os.system('wget '+url[i]+' -O ' + dir + 'test'+str(i)+'.html -q')
 
     # use grep to scrape out the number of citations
-    o = subprocess.check_output('grep ">Citations to the Article" test'+
+    o = subprocess.check_output('grep ">Citations to the Article" '+dir+'test'+
                                 str(i)+'.html | wc',shell=True)
     yn = float( o.split()[0] )
 
     # if that = 0, then no hits
     if (yn != 0):
         o2 = float(
-            subprocess.check_output('grep ">Citations to the Article (" test'+
+            subprocess.check_output('grep ">Citations to the Article (" '+dir+'test'+
                                     str(i)+'.html | sed "s|[^(]*(\([^)]*\)).*|\\1|"',
                                     shell=True) )
         #print o2==float(num[i])
@@ -96,5 +98,5 @@ plt.plot(num[ss], '-o')
 plt.title('H-index='+str(h1)+', '+str(datetime.datetime.today()))
 plt.xlabel('Paper')
 plt.ylabel('Citations')
-plt.savefig('cite_count.png', bbox_inches='tight', pad_inches=0.25)
+plt.savefig(dir + 'cite_count.png', dpi=150, bbox_inches='tight', pad_inches=0.25)
 plt.close()
