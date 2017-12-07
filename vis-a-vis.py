@@ -94,7 +94,7 @@ else:
 
 # make a figure
 plt.figure()
-plt.plot(num[ss], '-o')
+plt.plot(np.arange(1,len(num)+1), num[ss][::-1], '-o')
 plt.title('H-index='+str(h1)+', '+str(datetime.datetime.today()))
 plt.xlabel('Paper')
 plt.ylabel('Citations')
