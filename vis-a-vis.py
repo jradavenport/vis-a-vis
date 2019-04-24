@@ -42,7 +42,12 @@ def run_papers(papers = 'papers.tbl', dir = '/python/vis-a-vis/', makefig=True):
 
     for k in range(len(bibcodes)):
         article = list(ads.SearchQuery(bibcode=bibcodes[k], fl=['citation_count']))[0]
-        num[k] = article.citation_count
+        num_k = article.citation_count
+        if num_k != num[k]:
+            print(str(int(num_k-float(num[k]))) +
+                  ' new citations for paper: https://ui.adsabs.harvard.edu/abs/'+bibcodes[k])
+            print('\a') # make the computer "beep"
+            num[k] = num_k
 
     ss = np.argsort(num)
 
