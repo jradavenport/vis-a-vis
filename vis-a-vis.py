@@ -61,6 +61,7 @@ def run_papers(papers = 'papers.tbl', dir = '/python/vis-a-vis/', makefig=True):
 
     if h1>h0:
         print( 'h-index increased from '+str(h0)+' to '+str(h1))
+        print('\a') # make the computer "beep"
     else:
         print( 'h-index still is '+str(h1))
 
