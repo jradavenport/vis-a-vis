@@ -6,8 +6,6 @@ this is better for me than the ADS tool because it only checks a specific list o
 
 it returns info if new citation found, and updated h-index
 
-it requires wget. I had to install it using homebrew for my Mac.
-
 you could script it with cron, if you want
 '''
 
